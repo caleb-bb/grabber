@@ -26,6 +26,9 @@
 (defn hickory-this [html]
   (as-hickory (parse html)))
 
+(defn get-html [url]
+  (get (client/get url) :body))
+
 (defn url-to-hickory [url]
   (-> url
       (get-html)
@@ -123,5 +126,3 @@
 (def hick-struct (url-to-hickory url))
 (def scraped (get-tag-p hick-struct))
 (def lynx (map get-url (retrieve-text hick-struct s/tag :a)))
-(def nyt-req (nyt-build-query ""))
-(def nyt-resp (nyt-get nyt-req))
