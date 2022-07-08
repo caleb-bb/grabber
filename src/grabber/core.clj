@@ -113,6 +113,11 @@
        (remove commonwords)
        (frequencies)))
 
+(defn by-frequency [text]
+  (->> text
+       (freq-map)
+       (sort-by val #(compare %2 %1))))
+
 (defn n-most-common [mapped-text n]
   (->> mapped-text
        (sort-by val #(compare %2 %1))
